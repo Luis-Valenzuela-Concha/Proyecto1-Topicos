@@ -76,3 +76,22 @@ void ElasticSketch::insert(int element) {
         this->table[pos].flag = false;
     }
 }
+
+int ElasticSketch::estimarFreq(int element) {
+}
+
+void ElasticSketch::setRatio(int r) {
+    this->ratio = r;
+}
+
+void ElasticSketch::printSketch() {
+    cout << "Table:" << endl;
+    for (int i = 0; i < this->buckets; i++) {
+        cout << this->table[i].elemento << " ";
+    }
+
+    cout << endl
+         << endl;
+
+    this->sketch->printSketch();
+}

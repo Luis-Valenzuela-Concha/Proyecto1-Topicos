@@ -22,7 +22,7 @@ ElasticSketch::ElasticSketch(int b, int w, int d) {
     this->depth = d;
     // CountMin c(this->width, this->depth);
     this->sketch = new CountMin(this->width, this->depth);
-    this->table = vector<tupla4>(vector<tupla4>(b));
+    this->table = vector<tupla4>(b);
 }
 
 ElasticSketch::~ElasticSketch() { ; }
@@ -52,7 +52,13 @@ int useHashES(int element, int size, int i) {
 
 void ElasticSketch::insert(int element) {
     int pos = useHashES(element, this->buckets, 1);
-    if (this->table[pos].elemento == element) {
+
+    if (this->table[pos].elemento == 0) {
+        this->table[pos].elemento = element;
+        this->table[pos].v_up = 1;
+        this->table[pos].v_down = 0;
+        this->table[pos].flag = false;
+    } else if (this->table[pos].elemento == element) {
         this->table[pos].v_up++;
     } else if (this->table[pos].elemento != element) {
         this->table[pos].v_down++;
@@ -69,11 +75,6 @@ void ElasticSketch::insert(int element) {
                 this->sketch->insert(aux_element);
             }
         }
-    } else {
-        this->table[pos].elemento = element;
-        this->table[pos].v_up = 1;
-        this->table[pos].v_down = 0;
-        this->table[pos].flag = false;
     }
 }
 

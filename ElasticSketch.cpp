@@ -20,7 +20,6 @@ ElasticSketch::ElasticSketch(int b, int w, int d) {
     this->buckets = b;
     this->width = w;
     this->depth = d;
-    // CountMin c(this->width, this->depth);
     this->sketch = new CountMin(this->width, this->depth);
     this->table = vector<tupla4>(b);
 }

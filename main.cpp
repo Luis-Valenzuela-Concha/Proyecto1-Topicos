@@ -31,12 +31,16 @@ int main() {
     */
 
     ElasticSketch es(b, w, d);
-    es.insert(10);
+    for(int i=0;i<10;i++)es.insert(10);
     es.insert(12);
     es.insert(13);
     es.insert(14);
     es.insert(15);
     es.printSketch();
+    cout << es.estimarFreq(10) << endl;
+    cout << es.estimarFreq(11) << endl;
+    cout << es.estimarFreq(14) << endl;
+    cout << es.estimarFreq(15) << endl;
 
     return 0;
 }

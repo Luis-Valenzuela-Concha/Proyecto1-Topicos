@@ -21,7 +21,7 @@ ElasticSketch::ElasticSketch(int b, int w, int d) {
 ElasticSketch::~ElasticSketch() { ; }
 
 void ElasticSketch::insert(int element) {
-    // pos = resultado fhash % buckets;
+    // pos = useHash(element,size,i)resultado fhash % buckets;
     int pos;
     if (this->table[pos].elemento == element) {
         this->table[pos].v_up++;

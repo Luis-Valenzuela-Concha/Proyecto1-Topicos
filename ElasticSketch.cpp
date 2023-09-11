@@ -7,8 +7,14 @@
 
 #include "CountMin.h"
 #include "CountMinCU.h"
+#include "hashes/City.h"
+#include "hashes/Hashes.h"
+#include "hashes/MurmurHash2.h"
+#include "hashes/MurmurHash3.h"
 
 using namespace std;
+
+uint64_t seed = 12345;
 
 ElasticSketch::ElasticSketch(int b, int w, int d) {
     this->buckets = b;
@@ -20,8 +26,31 @@ ElasticSketch::ElasticSketch(int b, int w, int d) {
 
 ElasticSketch::~ElasticSketch() { ; }
 
+int useHash(int element, int size, int i) {
+    uint32_t hash_value;
+    switch (i) {
+        case 0:
+            hash_value = MurmurHash64A(&element, sizeof(int), seed) % size;
+            break;
+        case 1:
+            hash_value = CityHash64WithSeed((const char *)&element, sizeof(int), seed) % size;
+            break;
+        case 2:
+            uint32_t hash;
+            MurmurHash3_x86_32(&element, sizeof(int), seed, &hash);
+            hash_value = hash % size;
+            break;
+        case 3:
+            hash_value = Crap8((const uint8_t *)&element, sizeof(int), seed) % size;
+            break;
+        default:
+            break;
+    }
+    return hash_value;
+}
+
 void ElasticSketch::insert(int element) {
-    // pos = useHash(element,size,i)resultado fhash % buckets;
+    int pos = useHash(element, this->buckets, 1);
     int pos;
     if (this->table[pos].elemento == element) {
         this->table[pos].v_up++;

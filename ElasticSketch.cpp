@@ -1,9 +1,10 @@
+#include "ElasticSketch.h"
+
 #include <bits/stdc++.h>
 
 #include <iostream>
 #include <vector>
 
-#include "ElasticSketch.h"
 #include "CountMin.h"
 #include "CountMinCU.h"
 #include "hashes/City.h"
@@ -19,7 +20,7 @@ ElasticSketch::ElasticSketch(int b, int w, int d) {
     this->buckets = b;
     this->width = w;
     this->depth = d;
-    //CountMin c(this->width, this->depth);
+    // CountMin c(this->width, this->depth);
     this->sketch = new CountMin(this->width, this->depth);
     this->table = vector<tupla4>(vector<tupla4>(b));
 }
@@ -53,14 +54,25 @@ void ElasticSketch::insert(int element) {
     int pos = useHashES(element, this->buckets, 1);
     if (this->table[pos].elemento == element) {
         this->table[pos].v_up++;
-    } else {
-        if (this->table[pos].v_up > this->table[pos].v_down) {
-            this->table[pos].v_down++;
+    } else if (this->table[pos].elemento != element) {
+        this->table[pos].v_down++;
+        if (this->table[pos].v_down / this->table[pos].v_up < ratio) {
+            this->sketch->insert(element);
         } else {
+            int aux_element = this->table[pos].elemento;
+            int aux_v_up = this->table[pos].v_up;
             this->table[pos].elemento = element;
             this->table[pos].v_up = 1;
-            this->table[pos].v_down = 0;
-            this->table[pos].flag = false;
+            this->table[pos].v_down = 1;
+            this->table[pos].flag = true;
+            for (int i = 0; i < aux_v_up; i++) {
+                this->sketch->insert(aux_element);
+            }
         }
+    } else {
+        this->table[pos].elemento = element;
+        this->table[pos].v_up = 1;
+        this->table[pos].v_down = 0;
+        this->table[pos].flag = false;
     }
 }

@@ -1,4 +1,4 @@
-#include <ElasicSketch.h>
+#include <ElasticSketch.h>
 #include <bits/stdc++.h>
 
 #include <iostream>

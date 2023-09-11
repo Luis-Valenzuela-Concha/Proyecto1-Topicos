@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class tupla4 {
+struct tupla4 {
    public:
     unsigned int elemento = 0;
     int v_up = 0;
@@ -19,7 +19,7 @@ class ElasticSketch {
     int buckets;
     int width;
     int depth;
-    vector<vector<int>> sketchCU;
+    CountMin sketch;
     vector<tupla4> table;
 
    public:

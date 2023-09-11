@@ -20,7 +20,7 @@ ElasticSketch::ElasticSketch(int b, int w, int d) {
     this->buckets = b;
     this->width = w;
     this->depth = d;
-    this->sketchCU = vector<vector<int>>(d, vector<int>(w));  // Inicializa en 0
+    this->sketch = CountMin(w, d);
     this->table = vector<tupla4>(vector<tupla4>(b));
 }
 

@@ -33,6 +33,9 @@ int main() {
     ElasticSketch es(b, w, d);
     es.insert(10);
     es.insert(12);
+    es.insert(13);
+    es.insert(14);
+    es.insert(15);
     es.printSketch();
 
     return 0;

@@ -6,15 +6,10 @@
 
 using namespace std;
 
-class tupla4
-{
-public:
-    // int elemento;
-    int v_up;
-    bool flag;
-    int v_down;
+class tupla4{
+    public:
+        // int elemento;
+        int v_up;
+        bool flag;
+        int v_down;
 };
-
-int main()
-{
-}

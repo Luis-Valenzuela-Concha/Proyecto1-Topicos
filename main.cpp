@@ -22,5 +22,6 @@ int main(){
     sketchCU.insert(10);
     sketchCU.insert(12);
     sketchCU.printSketch();
+    cout << INT_MAX << endl;
     return 0;
 }

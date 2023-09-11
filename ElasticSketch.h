@@ -26,8 +26,8 @@ class ElasticSketch {
     ElasticSketch(int b, int w, int d);
     ~ElasticSketch();
     void insert(int element);
-    void move(int element);
+    /*void move(int element);
     void setRatio(int r);
     int estimarFreq(int element);
-    void printSketch();
+    void printSketch();*/   
 };

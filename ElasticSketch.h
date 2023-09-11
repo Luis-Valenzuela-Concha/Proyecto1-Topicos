@@ -1,7 +1,9 @@
+#ifndef ELASTICSKETCH_H
+#define ELASTICSKETCH_H
 #include <bits/stdc++.h>
-
 #include <iostream>
 #include <vector>
+#include "CountMin.h"
 
 using namespace std;
 
@@ -19,7 +21,7 @@ class ElasticSketch {
     int buckets;
     int width;
     int depth;
-    CountMin sketch;
+    CountMin *sketch;
     vector<tupla4> table;
 
    public:
@@ -31,3 +33,5 @@ class ElasticSketch {
     int estimarFreq(int element);
     void printSketch();*/
 };
+
+#endif

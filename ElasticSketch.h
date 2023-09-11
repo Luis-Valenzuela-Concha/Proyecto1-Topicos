@@ -1,11 +1,15 @@
+#ifndef ELASTICSKETCH_H
+#define ELASTICSKETCH_H
 #include <bits/stdc++.h>
 
 #include <iostream>
 #include <vector>
 
+#include "CountMin.h"
+
 using namespace std;
 
-class tupla4 {
+struct tupla4 {
    public:
     unsigned int elemento = 0;
     int v_up = 0;
@@ -19,15 +23,16 @@ class ElasticSketch {
     int buckets;
     int width;
     int depth;
-    vector<vector<int>> sketchCU;
+    CountMin *sketch;
     vector<tupla4> table;
 
    public:
     ElasticSketch(int b, int w, int d);
     ~ElasticSketch();
     void insert(int element);
-    /*void move(int element);
     void setRatio(int r);
     int estimarFreq(int element);
-    void printSketch();*/
+    void printSketch();
 };
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef COUNTMINCU_H
+#define COUNTMINCU_H
 #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -16,3 +18,4 @@ class CountMinCU{
         int estimarFreq(int element);
         void printSketch();
 };
+#endif

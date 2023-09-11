@@ -78,6 +78,16 @@ void ElasticSketch::insert(int element) {
 }
 
 int ElasticSketch::estimarFreq(int element) {
+    int pos = useHashES(element, this->buckets, 1);
+    int freq;
+    if (this->table[pos].elemento != element) {
+        freq = this->sketch->estimarFreq(element);
+    } else if (this->table[pos].elemento == element && this->table[pos].flag == false) {
+        freq = this->table[pos].v_up;
+    } else if (this->table[pos].elemento == element && this->table[pos].flag == true) {
+        freq = this->table[pos].v_up + this->sketch->estimarFreq(element);
+    }
+    return freq;
 }
 
 void ElasticSketch::setRatio(int r) {

@@ -20,7 +20,7 @@ class ElasticSketch {
     int width;
     int depth;
     vector<vector<int>> sketchCU;
-    vector<vector<tupla4>> table;
+    vector<tupla4> table;
 
    public:
     ElasticSketch(int b, int w, int d);
@@ -29,5 +29,5 @@ class ElasticSketch {
     /*void move(int element);
     void setRatio(int r);
     int estimarFreq(int element);
-    void printSketch();*/   
+    void printSketch();*/
 };

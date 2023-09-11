@@ -1,8 +1,10 @@
+#include "ElasticSketch.h"
+
 #include <bits/stdc++.h>
+
 #include <iostream>
 #include <vector>
 
-#include "ElasticSketch.h"
 #include "CountMin.h"
 #include "CountMinCU.h"
 
@@ -13,11 +15,24 @@ ElasticSketch::ElasticSketch(int b, int w, int d) {
     this->width = w;
     this->depth = d;
     this->sketchCU = vector<vector<int>>(d, vector<int>(w));  // Inicializa en 0
-    this->table = vector<vector<tupla4>>(d, vector<tupla4>(b));
+    this->table = vector<tupla4>(vector<tupla4>(b));
 }
 
 ElasticSketch::~ElasticSketch() { ; }
 
 void ElasticSketch::insert(int element) {
-    // llamar a funcion hash con el elemento
+    // pos = resultado fhash % buckets;
+    int pos;
+    if (this->table[pos].elemento == element) {
+        this->table[pos].v_up++;
+    } else {
+        if (this->table[pos].v_up > this->table[pos].v_down) {
+            this->table[pos].v_down++;
+        } else {
+            this->table[pos].elemento = element;
+            this->table[pos].v_up = 1;
+            this->table[pos].v_down = 0;
+            this->table[pos].flag = false;
+        }
+    }
 }

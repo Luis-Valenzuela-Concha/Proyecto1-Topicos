@@ -10,12 +10,12 @@ class CountMin{
     private:
         int width;
         int depth;
-        vector<vector<int>> sketch;
+        vector<vector<unsigned int>> sketch;
     public:
         CountMin(int w,int d);
         ~CountMin();
-        void insert(int element);
-        int estimarFreq(int element);
+        void insert(unsigned int element);
+        int estimarFreq(unsigned int element);
         void printSketch();
 };
 #endif

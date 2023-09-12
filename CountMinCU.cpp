@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
+
 #include "CountMinCU.h"
 #include "hashes/Hashes.h"
 #include "hashes/MurmurHash2.h"
@@ -14,7 +15,7 @@ uint64_t seedCU = 12345;
 CountMinCU::CountMinCU(int w,int d){
     this->width = w;
     this->depth = d;
-    this->sketch = vector<vector<int>>(d, vector<int>(w)); //Inicializa en 0
+    this->sketch = vector<vector<unsigned int>>(d, vector<unsigned int>(w)); //Inicializa en 0
 }
 
 CountMinCU::~CountMinCU(){;}
@@ -29,27 +30,27 @@ void CountMinCU::printSketch(){
     }
 }
 
-int useHashCU(int element,int size, int i){
+int useHashCU(unsigned int element,int size, int i){
     uint32_t hash_value;
     switch (i){
     case 0:
-        hash_value = MurmurHash64A(&element,sizeof(int),seedCU) % size; break;
+        hash_value = MurmurHash64A(&element,sizeof(unsigned int),seedCU) % size; break;
     case 1:
-        hash_value = CityHash64WithSeed((const char*)&element,sizeof(int),seedCU) % size; break;
+        hash_value = CityHash64WithSeed((const char*)&element,sizeof(unsigned int),seedCU) % size; break;
     case 2: 
         uint32_t hash;
-        MurmurHash3_x86_32 (&element,sizeof(int),seedCU,&hash);
+        MurmurHash3_x86_32 (&element,sizeof(unsigned int),seedCU,&hash);
         hash_value = hash%size;
         break;
     case 3:
-        hash_value = Crap8((const uint8_t*)&element,sizeof(int),seedCU) % size; break;
+        hash_value = Crap8((const uint8_t*)&element,sizeof(unsigned int),seedCU) % size; break;
     default: break;
     }
     return hash_value; 
 }
 
-void CountMinCU::insert(int element){
-    int estimada = estimarFreq(element);
+void CountMinCU::insert(unsigned int element){
+    unsigned int estimada = estimarFreq(element);
     for(int i=0;i<this->depth;i++){
         int j = useHashCU(element,this->width,i);
         if(estimada == this->sketch[i][j]){
@@ -58,8 +59,8 @@ void CountMinCU::insert(int element){
     }
 }
 
-int CountMinCU::estimarFreq(int element){
-    int freq_est = INT_MAX;
+int CountMinCU::estimarFreq(unsigned int element){
+    unsigned int freq_est = UINT_MAX;
     for(int i=0;i<this->depth;i++){
         int j = useHashCU(element,this->width,i);
         if(sketch[i][j] < freq_est) freq_est = sketch[i][j];

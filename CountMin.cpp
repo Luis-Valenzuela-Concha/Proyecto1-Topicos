@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
+
 #include "CountMin.h"
 #include "hashes/Hashes.h"
 #include "hashes/MurmurHash2.h"
@@ -14,7 +15,7 @@ uint64_t seed = 12345;
 CountMin::CountMin(int w,int d){
     this->width = w;
     this->depth = d;
-    this->sketch = vector<vector<int>>(d, vector<int>(w)); //Inicializa en 0
+    this->sketch = vector<vector<unsigned int>>(d, vector<unsigned int>(w)); //Inicializa en 0
 }
 
 CountMin::~CountMin(){;}
@@ -29,34 +30,34 @@ void CountMin::printSketch(){
     }
 }
 
-int useHash(int element,int size, int i){
+int useHash(unsigned int element,int size, int i){
     uint32_t hash_value;
     switch (i){
     case 0:
-        hash_value = MurmurHash64A(&element,sizeof(int),seed) % size; break;
+        hash_value = MurmurHash64A(&element,sizeof(unsigned int),seed) % size; break;
     case 1:
-        hash_value = CityHash64WithSeed((const char*)&element,sizeof(int),seed) % size; break;
+        hash_value = CityHash64WithSeed((const char*)&element,sizeof(unsigned int),seed) % size; break;
     case 2: 
         uint32_t hash;
-        MurmurHash3_x86_32 (&element,sizeof(int),seed,&hash);
+        MurmurHash3_x86_32 (&element,sizeof(unsigned int),seed,&hash);
         hash_value = hash%size;
         break;
     case 3:
-        hash_value = Crap8((const uint8_t*)&element,sizeof(int),seed) % size; break;
+        hash_value = Crap8((const uint8_t*)&element,sizeof(unsigned int),seed) % size; break;
     default: break;
     }
     return hash_value; 
 }
 
-void CountMin::insert(int element){
+void CountMin::insert(unsigned int element){
     for(int i=0;i<this->depth;i++){
         int j = useHash(element,this->width,i);
         this->sketch[i][j]++;
     }
 }
 
-int CountMin::estimarFreq(int element){
-    int freq_est = INT_MAX;
+int CountMin::estimarFreq(unsigned int element){
+    unsigned int freq_est = UINT_MAX;
     for(int i=0;i<this->depth;i++){
         int j = useHash(element,this->width,i);
         if(sketch[i][j] < freq_est) freq_est = sketch[i][j];

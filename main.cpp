@@ -10,37 +10,32 @@
 using namespace std;
 
 int main() {
-    int w = 15;
-    int d = 4;
-    int b = 10;
-    /*
+    // Copia los valores en un arreglo
+    FILE* archivo = fopen("Chicago-20080515.txt", "r");
+    if(!archivo) {
+        perror("File opening failed");
+        return EXIT_FAILURE;
+    }
+    vector<unsigned int> file;
+    unsigned int number;
+    while (fscanf(archivo, "%u", &number) != EOF) {
+        file.push_back(number);
+    }
+    fclose(archivo);
+    // Fin de copia
+
+    //Inicializacion
+    int w = 4066; int d = 4; int b = 4096;
+
+    //Inserta elementos en los sketch
     CountMin sketch(w,d);
-    int n = 10;
-    //printf("Elemento insertado: %d\n",n);
-    //sketch.insert(n);
-    sketch.insert(10);
-    sketch.insert(12);
-    sketch.printSketch();
-    //printf("Frecuencia estimada de %d: %d\n",12, sketch.estimarFreq(12));
+    for(int i=0;i<file.size();i++) sketch.insert(file[i]);
 
     CountMinCU sketchCU(w,d);
-    sketchCU.insert(10);
-    sketchCU.insert(12);
-    sketchCU.printSketch();
-    cout << INT_MAX << endl;
-    */
+    for(int i=0;i<file.size();i++) sketchCU.insert(file[i]);
 
-    ElasticSketch es(b, w, d);
-    for(int i=0;i<10;i++)es.insert(10);
-    es.insert(12);
-    es.insert(13);
-    es.insert(14);
-    es.insert(15);
-    es.printSketch();
-    cout << es.estimarFreq(10) << endl;
-    cout << es.estimarFreq(11) << endl;
-    cout << es.estimarFreq(14) << endl;
-    cout << es.estimarFreq(15) << endl;
+    ElasticSketch sketchES(b,w,d);
+    for(int i=0;i<file.size();i++) sketchES.insert(file[i]);
 
     return 0;
 }

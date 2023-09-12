@@ -1,6 +1,6 @@
-# Proyecto 1 : 
+# Proyecto 1: Tópicos en Manejo de grandes Vólumenes de Datos 
 
-Esta implementación incluye los sketches CounMin, CountMinCu y ElasticSketch.
+Esta implementación incluye los sketches CountMin, CountMinCu y ElasticSketch.
 Para ello se hace uso de las funciones hash:
     - MurmurHash2
     - MurmurHash3

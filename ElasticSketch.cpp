@@ -97,11 +97,6 @@ void ElasticSketch::printSketch() {
     for (int i = 0; i < this->buckets; i++) {
         cout << this->table[i].elemento << " ";
     }
-
-    cout << endl
-         << endl;
-         cout << endl
-         << endl;
-
+    cout << endl << endl;
     this->sketch->printSketch();
 }

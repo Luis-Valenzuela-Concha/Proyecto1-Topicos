@@ -27,7 +27,7 @@ int main() {
     //Inicializacion
     int w = 4066; int d = 4; int b = 4096;
 
-    //Inserta elementos en los sketch
+    //Inserta elementos en los sketchs
     CountMin sketch(w,d);
     for(int i=0;i<file.size();i++) sketch.insert(file[i]);
 

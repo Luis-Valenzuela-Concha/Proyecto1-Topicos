@@ -1,7 +1,6 @@
 # Topicos en manejos de grandes volumenes de datos
 # Proyecto 1 : 
-## Bruno Arce R.
-## Luis Valenzuela C.
+## Bruno Arce R. y Luis Valenzuela C.
 
 Esta implementación incluye los sketches CounMin, CountMinCu y ElasticSketch.
 Para ello se hace uso de las funciones hash:

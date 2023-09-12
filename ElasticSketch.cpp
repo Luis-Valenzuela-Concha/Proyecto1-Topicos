@@ -1,8 +1,10 @@
+#include "ElasticSketch.h"
+
 #include <bits/stdc++.h>
+
 #include <iostream>
 #include <vector>
 
-#include "ElasticSketch.h"
 #include "CountMin.h"
 #include "CountMinCU.h"
 #include "hashes/City.h"
@@ -14,6 +16,7 @@ using namespace std;
 
 uint64_t seedES = 12345;
 
+// Constructor de la clase
 ElasticSketch::ElasticSketch(int b, int w, int d) {
     this->buckets = b;
     this->width = w;
@@ -22,8 +25,10 @@ ElasticSketch::ElasticSketch(int b, int w, int d) {
     this->table = vector<tupla4>(b);
 }
 
+// Destructor de la clase
 ElasticSketch::~ElasticSketch() { ; }
 
+// Funcion que permite usar las funciones de hash
 int useHashES(unsigned int element, int size, int i) {
     uint32_t hash_value;
     switch (i) {
@@ -47,6 +52,7 @@ int useHashES(unsigned int element, int size, int i) {
     return hash_value;
 }
 
+// Funcion que inserta un elemento al sketch
 void ElasticSketch::insert(unsigned int element) {
     int pos = useHashES(element, this->buckets, 1);
 
@@ -75,6 +81,7 @@ void ElasticSketch::insert(unsigned int element) {
     }
 }
 
+// Funcion que estima la frecuencia de un elemento
 int ElasticSketch::estimarFreq(unsigned int element) {
     int pos = useHashES(element, this->buckets, 1);
     int freq;
@@ -88,10 +95,12 @@ int ElasticSketch::estimarFreq(unsigned int element) {
     return freq;
 }
 
+// Funcion que permite cambiar el ratio lambda
 void ElasticSketch::setRatio(int r) {
     this->ratio = r;
 }
 
+// Funcion que imprime el sketch
 void ElasticSketch::printSketch() {
     cout << "Table:" << endl;
     for (int i = 0; i < this->buckets; i++) {

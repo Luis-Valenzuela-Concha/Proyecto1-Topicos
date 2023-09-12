@@ -12,7 +12,7 @@ using namespace std;
 int main() {
     // Copia los valores en un arreglo
     FILE* archivo = fopen("Chicago-20080515.txt", "r");
-    if(!archivo) {
+    if (!archivo) {
         perror("File opening failed");
         return EXIT_FAILURE;
     }
@@ -24,18 +24,20 @@ int main() {
     fclose(archivo);
     // Fin de copia
 
-    //Inicializacion
-    int w = 4066; int d = 4; int b = 4096;
+    // Inicializacion
+    int w = 4066;
+    int d = 4;
+    int b = 4096;
 
-    //Inserta elementos en los sketchs
-    CountMin sketch(w,d);
-    for(int i=0;i<file.size();i++) sketch.insert(file[i]);
+    // Inserta elementos en los sketch
+    CountMin sketch(w, d);
+    for (int i = 0; i < file.size(); i++) sketch.insert(file[i]);
 
-    CountMinCU sketchCU(w,d);
-    for(int i=0;i<file.size();i++) sketchCU.insert(file[i]);
+    CountMinCU sketchCU(w, d);
+    for (int i = 0; i < file.size(); i++) sketchCU.insert(file[i]);
 
-    ElasticSketch sketchES(b,w,d);
-    for(int i=0;i<file.size();i++) sketchES.insert(file[i]);
+    ElasticSketch sketchES(b, w, d);
+    for (int i = 0; i < file.size(); i++) sketchES.insert(file[i]);
 
     return 0;
 }

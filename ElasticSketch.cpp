@@ -1,10 +1,8 @@
-#include "ElasticSketch.h"
-
 #include <bits/stdc++.h>
-
 #include <iostream>
 #include <vector>
 
+#include "ElasticSketch.h"
 #include "CountMin.h"
 #include "CountMinCU.h"
 #include "hashes/City.h"
@@ -106,6 +104,11 @@ void ElasticSketch::printSketch() {
     for (int i = 0; i < this->buckets; i++) {
         cout << this->table[i].elemento << " ";
     }
-    cout << endl << endl;
+
+    cout << endl
+         << endl;
+         cout << endl
+         << endl;
+
     this->sketch->printSketch();
 }

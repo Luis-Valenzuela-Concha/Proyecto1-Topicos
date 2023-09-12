@@ -1,7 +1,6 @@
 #ifndef COUNTMIN_H
 #define COUNTMIN_H
 #include <bits/stdc++.h>
-
 #include <iostream>
 #include <vector>
 

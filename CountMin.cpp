@@ -1,10 +1,8 @@
-#include "CountMin.h"
-
 #include <bits/stdc++.h>
-
 #include <iostream>
 #include <vector>
 
+#include "CountMin.h"
 #include "hashes/City.h"
 #include "hashes/Hashes.h"
 #include "hashes/MurmurHash2.h"

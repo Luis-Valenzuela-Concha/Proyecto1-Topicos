@@ -1,7 +1,6 @@
 #ifndef ELASTICSKETCH_H
 #define ELASTICSKETCH_H
 #include <bits/stdc++.h>
-
 #include <iostream>
 #include <vector>
 

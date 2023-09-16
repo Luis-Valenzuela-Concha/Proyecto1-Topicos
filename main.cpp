@@ -38,6 +38,7 @@ int main() {
 
     ElasticSketch sketchES(b, w, d);
     for (int i = 0; i < file.size(); i++) sketchES.insert(file[i]);
+    sketchES.printSketch();
 
     return 0;
 }

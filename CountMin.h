@@ -16,7 +16,7 @@ class CountMin {
    public:
     CountMin(int w, int d);
     ~CountMin();
-    void insert(unsigned int element);
+    void insert(unsigned int element, int delta=1);
     int estimarFreq(unsigned int element);
     void printSketch();
 };

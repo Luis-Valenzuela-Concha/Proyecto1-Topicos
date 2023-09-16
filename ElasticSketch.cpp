@@ -72,9 +72,7 @@ void ElasticSketch::insert(unsigned int element) {
             this->table[pos].v_up = 1;
             this->table[pos].v_down = 1;
             this->table[pos].flag = true;
-            for (int i = 0; i < aux_v_up; i++) {
-                this->sketch->insert(aux_element);
-            }
+            this->sketch->insert(aux_element,aux_v_up);
         }
     }
 }

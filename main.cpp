@@ -24,7 +24,7 @@ int main() {
     fclose(archivo);
     // Fin de copia
 
-    for(int i=4096;i<=131072;i*=2){
+    for(int i=4096;i<=262144;i*=2){
         // Inicializacion
         int w = i;
         int d = 4;

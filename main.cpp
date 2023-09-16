@@ -26,9 +26,7 @@ int main() {
 
     for(int i=4096;i<=262144;i*=2){
         // Inicializacion
-        int w = i;
-        int d = 4;
-        int b = 4096;
+        int w = i, d = 4, b = 4096;
         CountMin sketch(w, d);
         CountMinCU sketchCU(w, d);
         ElasticSketch sketchES(b, w, d);

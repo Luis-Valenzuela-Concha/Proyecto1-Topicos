@@ -58,10 +58,10 @@ int useHash(unsigned int element, int size, int i) {
 }
 
 // Funcion que permite insertar un elemento al sketch
-void CountMin::insert(unsigned int element,int delta) {
+void CountMin::insert(unsigned int element,int lambda) {
     for (int i = 0; i < this->depth; i++) {
         int j = useHash(element, this->width, i);
-        this->sketch[i][j]+=delta;
+        this->sketch[i][j]+=lambda;
     }
 }
 

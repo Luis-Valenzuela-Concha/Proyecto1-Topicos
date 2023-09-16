@@ -43,8 +43,10 @@ int main() {
             if(freq.find(number) == freq.end()) freq[number] = 1;
             else freq[number]++;
         }
+
         //Calcular errores
         printf("Calculo de error con w = %d y d = %d\n\n",w,d);
+        
         //Error relativo medio
         double ERM_CountMin = 0, ERM_CountMinCU = 0, ERM_ElasticSketch = 0;
         for(auto p = freq.begin(); p !=freq.end(); ++p){
@@ -68,7 +70,6 @@ int main() {
         printf("CountMin:         %.2lf\n",EAM_CountMin/freq.size());
         printf("CountMinCU:       %.2lf\n",EAM_CountMinCU/freq.size());
         printf("Elastick Sketch:  %.2lf\n\n",EAM_ElasticSketch/freq.size());
-
     }
     return 0;
 }
